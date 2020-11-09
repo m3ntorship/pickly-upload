@@ -1,0 +1,27 @@
+{
+  "name": "pickly-upload",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon dist/server",
+    "build:watch": "tsc -w"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@m3ntorship/pickly-protector": "^0.0.2",
+    "@types/config": "^0.0.36",
+    "@types/express": "^4.17.8",
+    "@types/mongoose": "^5.7.36",
+    "@types/multer": "^1.4.4",
+    "@types/node": "^14.14.2",
+    "@types/swagger-ui-express": "^4.1.2",
+    "config": "^3.3.2",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.10.10",
+    "multer": "^1.4.2"
+  }
+}
