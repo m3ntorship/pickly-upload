@@ -1,0 +1,9 @@
+{
+  "app":{
+    "PORT": 3003
+  },
+  "services": {
+    "postsService": "localhost:3001",
+    "notificationService": "localhost:3002"
+  }
+}
