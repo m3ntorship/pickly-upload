@@ -18,4 +18,4 @@ const fileFilter = (
 	}
 };
 
-export const upload: multer.Multer = multer({ fileFilter: fileFilter });
+export const upload: multer.Multer = multer({ fileFilter });
