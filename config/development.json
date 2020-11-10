@@ -6,5 +6,8 @@
   "services": {
     "postsService": "localhost:3001",
     "notificationService": "localhost:3002"
+  },
+  "upload_providers": {
+    "folder_name": "temp"
   }
 }
