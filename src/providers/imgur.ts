@@ -1,19 +1,25 @@
-import { Client } from '@rmp135/imgur';
-import multer, { memoryStorage } from 'multer';
-import { get } from 'config';
+import multer, { diskStorage, memoryStorage } from 'multer';
+import config from 'config';
 import { fileFilter } from '../multer';
+import { Request, RequestHandler } from 'express';
 
-const client_id: string = get('providers.imgur.client_id');
-const client_secret: string = get('providers.imgur.client_secret');
+const client_id: string = config.get('upload_providers.imgur.client_id');
+const client_secret: string = config.get(
+	'upload_providers.imgur.client_secret'
+);
 
-const client = new Client({
-	client_id,
-	client_secret,
-});
-export const upload_imgur = () => {
-	const upload: multer.Multer = multer({
+// const client = new Client({
+// 	client_id,
+// 	client_secret,
+// });
+
+export const upload_imgur: (
+	fieldName: string,
+	maxCount?: number
+) => RequestHandler = (fieldName, maxCount) => {
+	const upload = multer({
 		fileFilter,
-		//storage: memoryStorage,
 	});
-	//client.Image.upload();
+	return upload.array(fieldName, maxCount);
+	// return client.Image.upload(`${__dirname}/temp`);
 };
