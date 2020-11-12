@@ -2,6 +2,7 @@ import multer, { diskStorage, memoryStorage } from 'multer';
 import config from 'config';
 import { fileFilter } from '../multer';
 import { Request, RequestHandler } from 'express';
+import imgur from "imgur";
 
 const client_id: string = config.get('upload_providers.imgur.client_id');
 const client_secret: string = config.get(

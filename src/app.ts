@@ -1,5 +1,5 @@
 import express, { Application } from 'express';
-import { upload_imgur } from './providers/imgur';
+import { upload_imgur } from './upload/providers/imgur';
 
 const app: Application = express();
 
