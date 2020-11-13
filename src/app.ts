@@ -1,5 +1,5 @@
 import express, { Application } from 'express';
-import { upload_imgur } from './upload/providers/imgur';
+import { upload_imgur } from './upload/providers/imgur/upload';
 const app: Application = express();
 
 app.use(upload_imgur('options', 4), (req, res, next) => {
