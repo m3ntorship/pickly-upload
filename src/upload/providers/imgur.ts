@@ -50,12 +50,6 @@ const setupImgurStorage: () => StorageEngine = () => {
 	return { _handleFile, _removeFile };
 };
 
-// const imgur_uploader: RequestHandler = async (req, res, next) => {
-// 	const apiRes = await client.Image.upload(req.file.buffer);
-// 	return apiRes;
-// };
-// const imgurStorage: StorageEngine = () => {};
-
 export const upload_imgur: (
 	fieldName: string,
 	maxNum: number
