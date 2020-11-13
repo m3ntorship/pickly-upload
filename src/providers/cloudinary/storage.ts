@@ -1,6 +1,7 @@
 import { v2 as cloudinary } from 'cloudinary';
 import { CloudinaryStorage } from 'multer-storage-cloudinary';
 import config from 'config';
+
 const cloud_name: string = config.get('upload_providers.cloudinary.cloud_name');
 const api_key: string = config.get('upload_providers.cloudinary.api_key');
 const api_secret: string = config.get('upload_providers.cloudinary.api_secret');
