@@ -1,7 +1,7 @@
 import { StorageEngine } from 'multer';
 import { Request } from 'express';
 import concat from 'concat-stream';
-import { Client } from '@rmp135/imgur';
+import { Client } from '@rmp135/imgur'; // Only used for type assign, didn't create any new clients here
 
 export const imgurStorage: (client: Client) => StorageEngine = (client) => {
 	const _handleFile = (
@@ -14,10 +14,10 @@ export const imgurStorage: (client: Client) => StorageEngine = (client) => {
 		}
 		file.stream.pipe(
 			concat((data) => {
+				//client.image.upload --> upload function from @rmp135/imgur (typescript imgur client package) 
 				client.Image.upload(data)
-					.then((res) => {
-						let apiRes: any = res;
-						cb(null, apiRes);
+					.then((res: any) => {
+						cb(null, res);
 					})
 					.catch((err) => {
 						console.log(err);
