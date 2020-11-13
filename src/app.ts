@@ -1,9 +1,9 @@
 import express, { Application } from 'express';
-import { upload_cloudinary } from './providers/cloudinary/upload';
+import { upload_cloudinary } from './upload/providers/cloudinary/upload';
 
 const app: Application = express();
 
-app.use(upload_cloudinary.array('options', 4), (req, res, next) => {
+app.use(upload_cloudinary('options', 4), (req, res, next) => {
 	res.status(404).send();
 });
 
