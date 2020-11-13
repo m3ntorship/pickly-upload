@@ -1,9 +1,6 @@
-import multer from 'multer';
 import { v2 as cloudinary } from 'cloudinary';
 import { CloudinaryStorage } from 'multer-storage-cloudinary';
 import config from 'config';
-import { fileFilter } from '../multer';
-
 const cloud_name: string = config.get('upload_providers.cloudinary.cloud_name');
 const api_key: string = config.get('upload_providers.cloudinary.api_key');
 const api_secret: string = config.get('upload_providers.cloudinary.api_secret');
@@ -15,15 +12,10 @@ cloudinary.config({
 	api_secret,
 });
 
-const storage = new CloudinaryStorage({
+export const storage = new CloudinaryStorage({
 	cloudinary,
 	params: {
 		folder: folder_name || 'temp',
 		format: async (req, file) => file.originalname.split('.')[1],
 	},
-});
-
-export const upload_cloudinary: multer.Multer = multer({
-	fileFilter,
-	storage,
 });

@@ -1,5 +1,5 @@
 import express, { Application } from 'express';
-import { upload_cloudinary } from './providers/cloudinary';
+import { upload_cloudinary } from './providers/cloudinary/upload';
 
 const app: Application = express();
 
