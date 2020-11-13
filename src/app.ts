@@ -1,24 +1,13 @@
 import express, { Application } from 'express';
 import { upload_imgur } from './upload/providers/imgur';
-import { Client } from '@rmp135/imgur';
-import config from 'config';
-
 const app: Application = express();
 
-const client_id: string = config.get('upload_providers.imgur.client_id');
-const client_secret: string = config.get(
-	'upload_providers.imgur.client_secret'
-);
-let client = new Client({
-	client_id,
-	client_secret,
-});
-
-client.Image.upload;
-app.use(upload_imgur('options'), async (req, res, next) => {
+app.use(upload_imgur('options', 4), (req, res, next) => {
 	try {
-		const apiRes = await client.Image.upload(req.file.buffer);
-		res.status(200).json({ apiRes });
+		const optionsData = (req.files as Array<Express.Multer.File>).map(
+			(option: any) => option.data
+		);
+		res.status(200).json({ optionsData });
 	} catch (error) {
 		res.status(404).json({ error });
 	}
