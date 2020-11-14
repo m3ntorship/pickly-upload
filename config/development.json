@@ -1,10 +1,17 @@
 {
   "environment": "development",
+  "dev_mode": true,
   "app": {
     "PORT": 3003
   },
   "services": {
     "postsService": "localhost:3001",
     "notificationService": "localhost:3002"
+  },
+  "logger": {
+    "blacklistedMetaFields": [
+      "trace"
+    ],
+    "rotationLimit": 100000000
   }
 }
