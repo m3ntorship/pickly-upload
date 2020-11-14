@@ -7,10 +7,9 @@ const PORT: number = get('app.PORT');
 
 const mongoose = new Mongoose({ useUnifiedTopology: true });
 
-app.listen(PORT, () => {
-	console.log(`Listening on port ${PORT}`);
-});
-
 mongoose.connect(DB_URI, { useNewUrlParser: true }).then(() => {
 	console.log('connected to db');
+	app.listen(PORT, () => {
+		console.log(`Listening on port ${PORT}`);
+	});
 });
