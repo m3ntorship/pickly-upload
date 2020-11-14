@@ -1,5 +1,5 @@
 import express, { Application} from 'express';
-import { upload } from './multer';
+import { upload } from './upload/multer';
 
 const app: Application = express();
 

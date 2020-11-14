@@ -1,5 +1,6 @@
 import multer from 'multer';
 import { Request } from 'express';
+import createError from 'http-errors';
 
 const fileFilter = (
 	req: Request,
@@ -11,7 +12,8 @@ const fileFilter = (
 		cb(null, true);
 	} else {
 		cb(
-			new Error(
+			createError(
+				400,
 				'please upload an image with one of the accepted formats: "image/jpg", "image/jpeg", "image/png" '
 			)
 		);
