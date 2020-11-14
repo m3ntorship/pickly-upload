@@ -17,6 +17,6 @@ export const storage = new CloudinaryStorage({
 	cloudinary,
 	params: {
 		folder: folder_name || 'temp',
-		format: async (req, file) => file.originalname.split('.')[1],
+		format: async (req:any, file:any) => file.mimetype.split('/')[1],
 	},
 });
