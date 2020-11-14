@@ -1,7 +1,7 @@
 import { Schema, model } from 'mongoose';
-import { Option } from './options.interface';
+import { OptionBaseDocument } from './options.interface';
 
-const optionSchema = new Schema<Option>(
+const optionSchema = new Schema<OptionBaseDocument>(
 	{
 		name: String,
 		url: String,
@@ -27,4 +27,4 @@ const optionSchema = new Schema<Option>(
 
 optionSchema.virtual('votedByUser');
 
-export const Options = model<Option>('option', optionSchema);
+export const Options = model<OptionBaseDocument>('option', optionSchema);
