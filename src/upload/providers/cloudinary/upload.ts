@@ -3,6 +3,6 @@ import { fileFilter } from '../../multer';
 import { storage } from './storage';
 
 export const upload_cloudinary: multer.Multer = multer({
-	fileFilter,
-	storage,
+  fileFilter,
+  storage
 });
