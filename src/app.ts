@@ -3,8 +3,10 @@ import expressWinston from 'express-winston';
 import config from 'config';
 import { upload_cloudinary } from './upload/providers/cloudinary/upload';
 import upload_minio from './upload/providers/minio/upload';
-import client from "./upload/providers/minio/client";
+import client from './upload/providers/minio/client';
 import logger from './util/logger';
+
+const bucket: string = config.get('upload_providers.minio.bucket');
 
 const app: Application = express();
 
@@ -23,10 +25,13 @@ app.use(
     headerBlacklist: ['authorization', 'cookie']
   })
 );
-
-app.use(upload_minio.array('options', 4), (req, res, next) => {
-  
-  res.status(200).json({ optionsData: req.files });
+app.use(upload_minio.single('options'));
+app.use(async (req, res, next) => {
+  const url = await client.presignedGetObject(
+    bucket,
+    '112608127241989431605798585706.jpeg'
+  );
+  res.status(200).json({ url, optionsData: req.file });
 });
 
 app.use(

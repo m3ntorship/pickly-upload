@@ -1,11 +1,14 @@
 import multer from 'multer';
 import minioStorage from 'multer-minio-storage';
+import config from 'config';
 import minioClient from './client';
+
+const bucket: string = config.get('upload_providers.minio.bucket');
 
 export default multer({
   storage: minioStorage({
     minioClient,
-    bucket: 'pickly-dev',
+    bucket,
     metadata: (req, file, cb) => cb(null, { fieldName: file.fieldname }),
     key: function (req, file, cb) {
       cb(
