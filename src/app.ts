@@ -25,13 +25,13 @@ app.use(
     headerBlacklist: ['authorization', 'cookie']
   })
 );
-app.use(upload_minio.single('options'));
+app.use(upload_cloudinary.single('options'));
 app.use(async (req, res, next) => {
-  const url = await client.presignedGetObject(
-    bucket,
-    '112608127241989431605798585706.jpeg'
-  );
-  res.status(200).json({ url, optionsData: req.file });
+  // const url = await client.presignedGetObject(
+  //   bucket,
+  //   '112608127241989431605798585706.jpeg'
+  // );
+  res.status(200).json({ optionsData: req.file });
 });
 
 app.use(

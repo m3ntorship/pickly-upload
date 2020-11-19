@@ -19,3 +19,10 @@ export const fileFilter = (
     );
   }
 };
+
+export const fileName = (mimetype: string) => {
+  const name: string = `${
+    Math.random().toString().split('.')[1] + Date.now().toString()
+  }.${mimetype.split('/')[1]}`;
+  return name;
+};
