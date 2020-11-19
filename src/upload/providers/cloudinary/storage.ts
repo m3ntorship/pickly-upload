@@ -16,7 +16,7 @@ cloudinary.config({
 
 export const storage = new CloudinaryStorage({
   cloudinary,
-  params: async (req, file) => {
+  params: (req, file) => {
     return {
       folder: folder_name || 'temp',
       public_id: fileName(file.mimetype)
