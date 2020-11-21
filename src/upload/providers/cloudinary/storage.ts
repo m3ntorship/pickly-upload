@@ -1,7 +1,7 @@
 import { v2 as cloudinary } from 'cloudinary';
 import { CloudinaryStorage } from 'multer-storage-cloudinary';
 import config from 'config';
-import { fileName } from '../../multer';
+import { generateFileName } from '../../multer';
 
 const cloud_name: string = config.get('upload_providers.cloudinary.cloud_name');
 const api_key: string = config.get('upload_providers.cloudinary.api_key');
@@ -19,7 +19,7 @@ export const storage = new CloudinaryStorage({
   params: (req, file) => {
     return {
       folder: folder_name || 'temp',
-      public_id: fileName(file.mimetype)
+      public_id: generateFileName(file.mimetype)
     };
   }
 });
