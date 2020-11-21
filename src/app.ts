@@ -22,6 +22,7 @@ app.use(
     headerBlacklist: ['authorization', 'cookie']
   })
 );
+
 app.use(upload_minio.single('options'));
 app.use((req, res, next) => {
   res.status(200).json({ optionsData: req.file });
