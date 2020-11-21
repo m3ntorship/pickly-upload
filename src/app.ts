@@ -1,7 +1,7 @@
 import express, { Application } from 'express';
 import expressWinston from 'express-winston';
 import config from 'config';
-import { upload_cloudinary } from './upload/providers/cloudinary/upload';
+import upload_cloudinary from './upload/providers/cloudinary/upload';
 import upload_minio from './upload/providers/minio/upload';
 import logger from './util/logger';
 
