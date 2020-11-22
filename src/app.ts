@@ -1,6 +1,7 @@
 import express, { Application } from 'express';
 import expressWinston from 'express-winston';
 import config from 'config';
+import { v4 } from 'uuid';
 import upload_cloudinary from './upload/providers/cloudinary/upload';
 import upload_minio from './upload/providers/minio/upload';
 import logger from './util/logger';
@@ -8,6 +9,11 @@ import logger from './util/logger';
 const app: Application = express();
 
 app.use(express.json());
+
+app.use((req, res, next) => {
+  (req as any).id = v4();
+  next();
+});
 
 const blacklistedMetaFields: string[] = config.get(
   'logger.blacklistedMetaFields'

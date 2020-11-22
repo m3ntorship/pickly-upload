@@ -3,9 +3,10 @@ import minioStorage from 'multer-minio-storage';
 import config from 'config';
 import minioClient from './client';
 import { generateFileName } from '../../multer';
-import client from './client';
 
 const bucket: string = config.get('upload_providers.minio.bucket');
+const endPoint: string = config.get('upload_providers.minio.endPoint');
+const protocol: string = config.get('upload_providers.minio.protocol');
 
 let key: string; // caching the key to use it when making url
 
@@ -21,10 +22,10 @@ export default multer({
       generateKey(file.mimetype);
       cb(null, key);
     },
-    metadata: async (req, file, cb) => {
+    metadata: (req, file, cb) => {
       try {
-        const url = await client.presignedGetObject(bucket, key);
-        return cb(null, { fieldName: file.fieldname, url });
+        const url = `${protocol}//${endPoint}/${bucket}/${key}`;
+        return cb(null, { url });
       } catch (error) {
         return cb(error);
       }
@@ -32,5 +33,6 @@ export default multer({
     contentType: (req, file, cb) => cb(null, file.mimetype)
   })
 });
+
 // in minioStorage storage engine options, key must be called before metadata
 // to be able to cache the key value and use it later in metadata
